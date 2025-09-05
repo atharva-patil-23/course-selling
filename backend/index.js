@@ -1,29 +1,13 @@
 import express from "express"
 import jwt from "jsonwebtoken"
+import courseRouter from "./Routes/course.route"
+import userRouter from "./Routes/user.route"
 
 const app = express()
 const port = 3000
-app.use(express.json())
 
-app.post("/user/signin", (req,res) => {
-
-})
-
-app.post("/user/login",(req,res) => {
-
-})
-
-app.get("/user/purchases",(req,res) => {
-
-})
-
-app.post("/course/purchase",(req,res) => {
-
-})
-
-app.get("/courses",(req,res) => {
-
-})
+app.use("/user",userRouter)
+app.use("/course",courseRouter)
 
 
 app.listen(port, () =>{
