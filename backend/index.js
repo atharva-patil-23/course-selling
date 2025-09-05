@@ -1,7 +1,7 @@
 import express from "express"
 import jwt from "jsonwebtoken"
-import courseRouter from "./Routes/course.route"
-import userRouter from "./Routes/user.route"
+import courseRouter from "./Routes/course.route.js"
+import userRouter from "./Routes/user.route.js"
 
 const app = express()
 const port = 3000
