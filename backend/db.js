@@ -1,5 +1,9 @@
 import mongoose , {Schema} from "mongoose"
+import dotenv from "dotenv"
 const ObjectId = mongoose.Types.ObjectId
+
+dotenv.config()
+mongoose.connect(process.env.MONGODB_URL)
 
 const userSchema = new Schema({
     email:{
@@ -19,7 +23,7 @@ const userSchema = new Schema({
         required:true
     } 
 })
-const courseSchema = Schema({
+const courseSchema = new Schema({
     title:{
         type:String,
         required:true
@@ -41,7 +45,7 @@ const courseSchema = Schema({
     }
 })
 
-const adminSchema = Schema({
+const adminSchema = new Schema({
     email:{
         type:String,
         unique:true
@@ -60,12 +64,18 @@ const adminSchema = Schema({
     }
 })
 
-const purchaseSchema = Schema({
+const purchaseSchema = new Schema({
     courseId:ObjectId,
     userId:ObjectId
 })
 
-const userModel = mongoose.Model("user",userSchema)
-const adminModel = mongoose.Model("admin",adminSchema)
-const courseModel = mongoose.Model("course",courseSchema)
-const purchaseModel = mongoose.Model("purchase",purchaseSchema)
+const userModel = mongoose.model("user",userSchema)
+const adminModel = mongoose.model("admin",adminSchema)
+const courseModel = mongoose.model("course",courseSchema)
+const purchaseModel = mongoose.model("purchase",purchaseSchema)
+
+export { userModel,
+  adminModel,
+  courseModel,
+  purchaseModel
+}
