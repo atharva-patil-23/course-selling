@@ -1,9 +1,8 @@
 import mongoose , {Schema} from "mongoose"
-import dotenv from "dotenv"
+
 const ObjectId = mongoose.Types.ObjectId
 
-dotenv.config()
-mongoose.connect(process.env.MONGODB_URL)
+
 
 const userSchema = new Schema({
     email:{
