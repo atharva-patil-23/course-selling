@@ -13,7 +13,7 @@ const userSchema = new Schema({
         type:String,
         required:true
     },
-    fullName:{
+    firstName:{
         type:String,
         required:true
     },
@@ -53,7 +53,7 @@ const adminSchema = new Schema({
         type:String,
         required:true
     },
-    fullName:{
+    firstName:{
         type:String,
         required:true
     },
