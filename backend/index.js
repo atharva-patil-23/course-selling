@@ -22,3 +22,5 @@ async function main(){
         console.log(`Your server is now listening at ${port}`)
     })
 }
+
+main()
