@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { adminModel} from "../db.js";
+import { adminModel, courseModel} from "../db.js";
 import { z } from "zod";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
@@ -93,8 +93,23 @@ adminRouter.post("/signin",async function(req,res){
     }
 })
 
-adminRouter.post("/course",adminMiddleware,(req,res)=>{
+adminRouter.post("/course",adminMiddleware,async (req,res)=>{
+    const adminId = req.userId
 
+    const { title, description, imageUrl, price} = req.body
+
+    const course = await courseModel.create({
+        title:title,
+        description:description,
+        imageUrl:imageUrl,
+        price:price,
+        creatorId:adminId
+    })
+
+    res.json({
+        message:"Course created successfully",
+        courseId: course._id
+    })
 })
 
 adminRouter.delete("/course",(req,res)=>{
