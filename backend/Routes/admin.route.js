@@ -3,6 +3,7 @@ import { adminModel} from "../db.js";
 import { z } from "zod";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
+import adminMiddleware from "../middleware/admin.middleware.js";
 
 
 const adminRouter = Router()
@@ -92,7 +93,7 @@ adminRouter.post("/signin",async function(req,res){
     }
 })
 
-adminRouter.post("/course",(req,res)=>{
+adminRouter.post("/course",adminMiddleware,(req,res)=>{
 
 })
 
