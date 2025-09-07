@@ -116,12 +116,15 @@ adminRouter.delete("/course",(req,res)=>{
 
 })
 
-adminRouter.put("/course",(req,res)=>{
+adminRouter.put("/course",adminMiddleware,(req,res)=>{
+    const adminId = req.userId
+
+
 
 })
 
-adminRouter.get("/course/bulk",(req,res)=>{
-
+adminRouter.get("/course/bulk",adminMiddleware,(req,res)=>{
+    const adminId = req.userId
 })
 
 
