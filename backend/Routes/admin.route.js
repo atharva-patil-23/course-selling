@@ -116,15 +116,41 @@ adminRouter.delete("/course",(req,res)=>{
 
 })
 
-adminRouter.put("/course",adminMiddleware,(req,res)=>{
+adminRouter.put("/course",adminMiddleware,async(req,res)=>{
     const adminId = req.userId
+
+    const {title, description, imageUrl, price, courseId} = req.body
+
+    const course = await courseModel.updateOne({
+        _id:courseId,
+        creatorId:adminId
+    },{
+        title:title,
+        description:description,
+        imageUrl:imageUrl,
+        price:price
+    })
+
+    req.json({
+        message:"course successfully updated",
+        courseId :course._id
+    })
 
 
 
 })
 
-adminRouter.get("/course/bulk",adminMiddleware,(req,res)=>{
+adminRouter.get("/course/bulk",adminMiddleware,async(req,res)=>{
     const adminId = req.userId
+
+    const courses = await courseModel.find({
+        creatorId:adminId
+    })
+
+    req.json({
+        courses
+    })
+
 })
 
 

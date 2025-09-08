@@ -94,7 +94,7 @@ userRouter.post("/login",async(req,res) => {
 })
 
 userRouter.get("/purchases",(req,res) => {
-
+    
 })
 
 export default userRouter
