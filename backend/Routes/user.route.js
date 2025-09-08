@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { userModel } from "../db.js";
+import { purchaseModel, userModel } from "../db.js";
 import jwt from "jsonwebtoken"
 import {z} from "zod"
 import bcrypt from "bcrypt"
@@ -93,8 +93,16 @@ userRouter.post("/login",async(req,res) => {
     
 })
 
-userRouter.get("/purchases",(req,res) => {
-    
+userRouter.get("/purchases",async(req,res) => {
+    const userId = req.userId
+
+    const purchases = await purchaseModel.find({
+        userId
+    })
+
+    res.json({
+        purchases
+    })
 })
 
 export default userRouter
